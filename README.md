@@ -1,6 +1,14 @@
+# 🌟🌟🌟 Update: (by Chong Wang) 🌟🌟🌟
+
+- The required function is located at [src/convertFunction.ts](src/convertFunction.ts)
+- The bonus part is finish, all the test cases and snapshots added to [\_\_tests\_\_](__tests__) and [\_\_snapshots\_\_](__snapshots__)
+- By my understanding, there is no need to modify [src/index.ts](src/index.ts)
+- Used AI to help to quick understand the project.
+
 # ast-challenge
 
 Welcome! We're excited that you're interested in working with us, we hope you enjoy this challenge :)
+
 ## Instructions
 
 1. create a cloned version of this repo (don't fork it publicly)
@@ -40,28 +48,33 @@ Take the input and output below, and make a function that can generate this code
 ### function input
 
 ```json
-  {
-    "Pools": {
-        "requestType": "QueryPoolsRequest",
-        "responseType": "QueryPoolsResponse"
-    }
+{
+  "Pools": {
+    "requestType": "QueryPoolsRequest",
+    "responseType": "QueryPoolsResponse"
   }
+}
 ```
 
 ### function output
 
 ```ts
-export interface UsePoolsQuery<TData> extends ReactQueryParams<QueryPoolsResponse, TData> {
-    request?: QueryPoolsRequest;
+export interface UsePoolsQuery<TData>
+  extends ReactQueryParams<QueryPoolsResponse, TData> {
+  request?: QueryPoolsRequest;
 }
-const usePools = <TData = QueryPoolsResponse,>({
-    request,
-    options
+const usePools = <TData = QueryPoolsResponse>({
+  request,
+  options,
 }: UsePoolsQuery<TData>) => {
-    return useQuery<QueryPoolsResponse, Error, TData>(["poolsQuery", request], () => {
-        if (!queryService) throw new Error("Query Service not initialized");
-        return queryService.pools(request);
-    }, options);
+  return useQuery<QueryPoolsResponse, Error, TData>(
+    ["poolsQuery", request],
+    () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.pools(request);
+    },
+    options
+  );
 };
 ```
 
@@ -86,7 +99,7 @@ After completing the function, parameterize (meaning make function arguments to 
 - [ ] request type (`QueryPoolsRequest`)
 - [ ] response type (`QueryPoolsResponse`)
 - [ ] queryService method name (`queryService.pools()`)
-- [ ] key name  (`poolsQuery`)
+- [ ] key name (`poolsQuery`)
 
 #### bonus
 
